@@ -17,11 +17,13 @@ jobs:
 
     - name: Configure CMake
       run: |
-        where.exe /R "C:\Program Files\Microsoft Visual Studio\" vcvars32.bat
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
         cmake -G "Visual Studio 17 2022" -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build wxUiEditor
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target wxUiEditor
+      run: |
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
+        cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target wxUiEditor
 
     - name: Create Windows Artifact
       uses: actions/upload-artifact@v4
