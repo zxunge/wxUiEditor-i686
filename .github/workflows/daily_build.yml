@@ -16,9 +16,8 @@ jobs:
     - run: mkdir ${{github.workspace}}/build
 
     - name: Configure CMake
-      run: |
-        gcm where -All
-        where /R C:\ vcvars32.bat
+      run: 丨
+        where.exe /R C:\ vcvars32.bat
         cmake -G "Visual Studio 17 2022" -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build wxUiEditor
