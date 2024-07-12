@@ -16,11 +16,13 @@ jobs:
     - run: mkdir ${{github.workspace}}/build
 
     - name: Configure CMake
+      shell: cmd
       run: |
         "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86
         cmake -G "Visual Studio 17 2022" -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build wxUiEditor
+      shell: cmd
       run: |
         "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86
         cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target wxUiEditor
