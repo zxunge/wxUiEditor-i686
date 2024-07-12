@@ -17,7 +17,7 @@ jobs:
 
     - name: Configure CMake
       run: |
-        where.exe /R C:\ vcvars32.bat
+        where.exe /R "C:\Program Files\Microsoft Visual Studio\" vcvars32.bat
         cmake -G "Visual Studio 17 2022" -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build wxUiEditor
