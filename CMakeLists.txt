@@ -1,10 +1,15 @@
 cmake_minimum_required(VERSION 3.20)
 
+# 设置策略CMP0091为NEW，新策略
+if (POLICY CMP0091)
+  cmake_policy(SET CMP0091 NEW)
+endif (POLICY CMP0091)
+
 project(wxUiEditor
     LANGUAGES CXX
     VERSION 1.2.1.0
     DESCRIPTION "wxWidgets UI designer"
-    HOMEPAGE_URL "https://github.com/KeyWorksRW/wxUiEditor")
+    HOMEPAGE_URL "https://bgithub.xyz/KeyWorksRW/wxUiEditor")
 
 ####################### Options #######################
 
@@ -93,9 +98,12 @@ if (MSVC)
     set(CMAKE_CXX_FLAGS_DEBUG ${z_seven} CACHE STRING "C++ Debug flags" FORCE)
 
     # Use static runtime for Release builds to run with Wine without needing to install the dlls
-    if (NOT BUILD_SHARED_LIBS)
-        set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-    endif()
+    #if (NOT BUILD_SHARED_LIBS)
+    #    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    #endif()
+    # 设置MT/MTd
+    #set_property(TARGET test PROPERTY
+     #   MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 else()
     # Use the package PkgConfig to detect GTK+ headers/library files
     find_package(PkgConfig REQUIRED)
@@ -347,14 +355,14 @@ set(CPACK_RPM_PACKAGE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/EULA.TXT)
 set(CPACK_RPM_PACKAGE_VENDOR "KeyWorks Software")
 set(CPACK_RPM_PACKAGE_GROUP "Development/Tools")
 set(CPACK_RPM_PACKAGE_REQUIRES "libgtk-3.so.0, glibc >= 2.38")
-set(CPACK_RPM_PACKAGE_URL "https://github.com/KeyWorksRW/wxUiEditor")
+set(CPACK_RPM_PACKAGE_URL "https://bgithub.xyz/KeyWorksRW/wxUiEditor")
 set(CPACK_RPM_PACKAGE_DESCRIPTION "wxWidgets UI designer")
 set(CPACK_RPM_PACKAGE_SUMMARY "wxWidgets UI designer")
 
 set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/debian/preinst")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "KeyWorks Software <https://github.com/KeyWorksRW>")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libgtk-3-0, libc6 (>= 2.31)")
-set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://github.com/KeyWorksRW/wxUiEditor")
+set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://bgithub.xyz/KeyWorksRW/wxUiEditor")
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "wxWidgets UI designer")
 set(CPACK_DEBIAN_PACKAGE_ICON ${CMAKE_CURRENT_LIST_DIR}/src/art_src/wxUiEditor.svg)
 set(CPACK_DEBIAN_PACKAGE_SUMMARY "wxWidgets UI designer")
