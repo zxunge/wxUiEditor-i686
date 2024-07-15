@@ -102,8 +102,8 @@ if (MSVC)
     #    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     #endif()
     # 设置MT/MTd
-    #set_property(TARGET test PROPERTY
-     #   MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    set_property(TARGET wxUiEditor PROPERTY
+        MSVC_RUNTIME_LIBRARY "MultiThreaded")
 else()
     # Use the package PkgConfig to detect GTK+ headers/library files
     find_package(PkgConfig REQUIRED)
