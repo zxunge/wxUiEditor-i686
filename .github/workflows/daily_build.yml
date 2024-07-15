@@ -21,7 +21,10 @@ jobs:
 
     - name: display
       shell: msys2 {0}
-      run: cat 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
+      run: |
+        cat 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
+        echo "------"  
+        cat 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\vsdevcmd.bat'
 
     - name: Configure CMake
       run: |
