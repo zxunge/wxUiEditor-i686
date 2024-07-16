@@ -36,7 +36,7 @@ jobs:
       with:
         name: WindowsExecutable
         path: |
-          build/bin/Release/wxUiEditor.exe
+          build/bin/wxUiEditor.exe
 
   buildUnix:
     runs-on: ubuntu-20.04
