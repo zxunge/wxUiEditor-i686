@@ -334,19 +334,7 @@ public:
         return *this;
     }
 
-    tt_string& operator<<(char ch)
-    {
-        *this += ch;
-        return *this;
-    }
-
     tt_string& operator<<(int value)
-    {
-        *this += std::to_string(value);
-        return *this;
-    }
-
-    tt_string& operator<<(size_t value)
     {
         *this += std::to_string(value);
         return *this;
