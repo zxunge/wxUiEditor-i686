@@ -40,7 +40,7 @@ void BaseCodeGenerator::WriteImagePreConstruction(Code& code)
             code.Str("namespace wxue_img").OpenBrace();
         }
         code.Eol(eol_if_needed).Str("extern const unsigned char ").Str(iter_array->imgs[0].array_name);
-        code.Str("[").itoa(iter_array->imgs[0].array_size & 0xFFFFFFFF).Str("];");
+        code.Str("[").itoa(size_t(iter_array->imgs[0].array_size & 0xFFFFFFFF)).Str("];");
         if (iter_array->imgs[0].filename.size())
         {
             code.Str("  // ").Str(iter_array->imgs[0].filename);
@@ -215,7 +215,7 @@ void BaseCodeGenerator::WriteImagePostHeader()
             m_header->writeLine(tt_string("// ") << iter_array->imgs[0].filename);
         }
         m_header->writeLine(tt_string("extern const unsigned char ")
-                            << iter_array->imgs[0].array_name << '[' << (iter_array->imgs[0].array_size & 0xFFFFFFFF)
+                            << iter_array->imgs[0].array_name << '[' << size_t(iter_array->imgs[0].array_size & 0xFFFFFFFF)
                             << "];");
     }
 
