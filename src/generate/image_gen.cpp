@@ -514,8 +514,8 @@ static void GenerateSVGBundle(Code& code, const tt_string_vector& parts, bool ge
     if (code.is_cpp())
     {
         tt_string name = "wxue_img::" + embed->imgs[0].array_name;
-        code.Eol() << "\twxueBundleSVG(" << name << ", " << (embed->imgs[0].array_size & 0xFFFFFFFF) << ", ";
-        code.itoa(embed->imgs[0].array_size >> 32).Comma();
+        code.Eol() << "\twxueBundleSVG(" << name << ", " << size_t(embed->imgs[0].array_size & 0xFFFFFFFF) << ", ";
+        code.itoa(size_t(embed->imgs[0].array_size >> 32)).Comma();
         if (get_bitmap)
         {
             code.FormFunction("FromDIP(").Add("wxSize(").itoa(svg_size.x).Comma().itoa(svg_size.y) += ")))";
