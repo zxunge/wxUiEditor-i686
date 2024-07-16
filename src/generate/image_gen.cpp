@@ -40,7 +40,7 @@ void BaseCodeGenerator::WriteImagePreConstruction(Code& code)
             code.Str("namespace wxue_img").OpenBrace();
         }
         code.Eol(eol_if_needed).Str("extern const unsigned char ").Str(iter_array->imgs[0].array_name);
-        code.Str("[").itoa(size_t(iter_array->imgs[0].array_size & 0xFFFFFFFF)).Str("];");
+        code.Str("[").itoa(iter_array->imgs[0].array_size & 0xFFFFFFFF).Str("];");
         if (iter_array->imgs[0].filename.size())
         {
             code.Str("  // ").Str(iter_array->imgs[0].filename);
@@ -514,8 +514,8 @@ static void GenerateSVGBundle(Code& code, const tt_string_vector& parts, bool ge
     if (code.is_cpp())
     {
         tt_string name = "wxue_img::" + embed->imgs[0].array_name;
-        code.Eol() << "\twxueBundleSVG(" << name << ", " << size_t(embed->imgs[0].array_size & 0xFFFFFFFF) << ", ";
-        code.itoa(size_t(embed->imgs[0].array_size >> 32)).Comma();
+        code.Eol() << "\twxueBundleSVG(" << name << ", " << (embed->imgs[0].array_size & 0xFFFFFFFF) << ", ";
+        code.itoa(embed->imgs[0].array_size >> 32).Comma();
         if (get_bitmap)
         {
             code.FormFunction("FromDIP(").Add("wxSize(").itoa(svg_size.x).Comma().itoa(svg_size.y) += ")))";
