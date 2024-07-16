@@ -329,12 +329,6 @@ public:
         return *this;
     }
 
-    Code& itoa(size_t val)
-    {
-        *this += std::to_string(val);
-        return *this;
-    }
-
     Code& itoa(GenEnum::PropName prop_name1, GenEnum::PropName prop_name2)
     {
         as_string(prop_name1).Comma().as_string(prop_name2);
