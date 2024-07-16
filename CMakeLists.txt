@@ -1,10 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
 
-# 设置策略CMP0091为NEW，新策略
-if (POLICY CMP0091)
-  cmake_policy(SET CMP0091 NEW)
-endif (POLICY CMP0091)
-
 project(wxUiEditor
     LANGUAGES CXX
     VERSION 1.2.1.0
@@ -98,12 +93,9 @@ if (MSVC)
     set(CMAKE_CXX_FLAGS_DEBUG ${z_seven} CACHE STRING "C++ Debug flags" FORCE)
 
     # Use static runtime for Release builds to run with Wine without needing to install the dlls
-    #if (NOT BUILD_SHARED_LIBS)
-    #    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-    #endif()
-    # 设置MT/MTd
-    set_property(TARGET wxUiEditor PROPERTY
-        MSVC_RUNTIME_LIBRARY "MultiThreaded")
+    if (NOT BUILD_SHARED_LIBS)
+        set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    endif()
 else()
     # Use the package PkgConfig to detect GTK+ headers/library files
     find_package(PkgConfig REQUIRED)
